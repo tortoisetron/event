@@ -29,6 +29,38 @@ if($action == 'edit')
 	}
 }
 ?>
+<!-- Add this style block -->
+<style>
+#adminSeatArrange {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  background: #fff;
+}
+
+#adminSeatArrange td, #adminSeatArrange th, .config-table td, .config-table th {
+  border: 1px solid #666;
+  /* width: 28px;
+  height: 28px; */
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#adminSeatArrange img {
+  width: 17px;
+  height: 17px;
+  display: block;
+  margin: 0 auto;
+}
+
+#adminSeatArrange tr:first-child td,
+#adminSeatArrange td:first-child {
+  background: #f8f8f8;
+  font-weight: bold;
+}
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -48,9 +80,9 @@ if($action == 'edit')
       <div class="box">
         <div class="box-body">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <form>
-                <table cellpadding="5" style="margin-bottom: 20px;">
+                <table cellpadding="5" style="margin-bottom: 20px;" class="table border-dark table-sm config-table">
                   <tr>
                     <td style='width:100px;'>Row from</td>
                     <td>
@@ -133,10 +165,13 @@ if($action == 'edit')
                   <tr>
                     <td colspan='2'><input type='button' value='Submit Arrangement' class='btn btn-default btn-sm' style="width:100%;" onclick="save_arrangement()" /></td>
                   </tr>
+                  <tr>
+                    <td colspan='2'><input type='button' id='removeBtn' value='Remove Arrangement' class='btn btn-danger btn-sm' style="width:100%;" onclick="remove_arrangement()" <?php echo ($action != 'edit' || $rescnt == 0) ? 'disabled' : ''; ?> /></td>
+                  </tr>
                 </table>
               </form>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
               <div style="overflow-x:auto; max-width:100%;">
                 <table class="table table-bordered table-sm" id="adminSeatArrange" style="background:#fff;">
                   <?php
@@ -234,13 +269,13 @@ function make_arrangement()
 					seat_name = '';
 				}
 				
-				alert(col_from + col_to);
+				// alert(col_from + col_to);
 
 				for(var j = col_from; j<=col_to; j++)
 				{	
 					if(flag)
 					{
-						alert("You have selected Row-"+row_from+"-"+row_to+"& Column-"+col_from+"-"+col_to);
+						// alert("You have selected Row-"+row_from+"-"+row_to+"& Column-"+col_from+"-"+col_to);
 					}
 					flag = false;
 					var tdid = i+'.'+j;
@@ -323,6 +358,19 @@ function save_arrangement(){
 	
 	document.getElementById('take_arrangement').innerHTML = myForm;
 	document.forms['arrangement_form'].submit();
+}
+</script>
+<script>
+function remove_arrangement() {
+    if(confirm('Are you sure you want to remove all seat arrangements?')) {
+        var myForm = "<form name='remove_arrangement_form' id='remove_arrangement_form' method='post' action='process/remove_arrangement.php'>";
+        myForm = myForm + "<input type='hidden' name='event_id' value='<?php echo $event_id?>'>";
+        myForm = myForm + "<input type='submit' name='submit_remove' id='submit_remove' value='submit_remove'>";
+        myForm = myForm + "</form>";
+        
+        document.getElementById('take_arrangement').innerHTML = myForm;
+        document.forms['remove_arrangement_form'].submit();
+    }
 }
 </script>
 <?php
