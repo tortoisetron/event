@@ -32,6 +32,9 @@ include('../../config.php');
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>  
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -108,6 +111,14 @@ include('../../config.php');
         <li class="treeview">
           <a href="index.php">
             <i class="fa fa-calendar"></i> <span>Event</span>
+            <span class="pull-right-container">
+             <!-- <i class="fa fa-angle-left pull-right"></i>-->
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="agent.php">
+            <i class="fa fa-users"></i> <span>Agent Management</span>
             <span class="pull-right-container">
              <!-- <i class="fa fa-angle-left pull-right"></i>-->
             </span>
