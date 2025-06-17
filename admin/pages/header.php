@@ -107,14 +107,14 @@ include('../../config.php');
       <ul class="sidebar-menu">
         <li class="treeview">
           <a href="index.php">
-            <i class="fa fa-home"></i> <span>Home</span>
+            <i class="fa fa-calendar"></i> <span>Event</span>
             <span class="pull-right-container">
              <!-- <i class="fa fa-angle-left pull-right"></i>-->
             </span>
           </a>
         </li>
         
-          <li class="treeview">
+          <!-- <li class="treeview">
           <a href="add_event.php">
             <i class="fa fa-film"></i> <span>Add Event</span>
             <span class="pull-right-container">
@@ -122,7 +122,7 @@ include('../../config.php');
             </span>
           </a>
          
-        </li>
+        </li> -->
       <!--  <li class="treeview">
           <a href="#">
             <i class="fa fa-plus"></i> <span>Upcoming Event News</span>
