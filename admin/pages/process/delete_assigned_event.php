@@ -13,7 +13,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $show_id = intval($_GET['id']);
 
 
-$query = "DELETE FROM assign_show WHERE show_id = '$show_id'";
+$query = "DELETE FROM tbl_assign_show WHERE show_id = '$show_id'";
 if (mysqli_query($con, $query)) {
     echo "
     <!DOCTYPE html>

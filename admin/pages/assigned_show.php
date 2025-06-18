@@ -27,17 +27,17 @@ include('header.php');
             <?php
               $sql = "
                 SELECT 
-                  assign_show.show_id,
-                  assign_show.date,
-                  assign_show.movie_id,
-                  assign_show.start_time,
-                  assign_show.end_time,
+                  tbl_assign_show.show_id,
+                  tbl_assign_show.date,
+                  tbl_assign_show.movie_id,
+                  tbl_assign_show.start_time,
+                  tbl_assign_show.end_time,
                   tbl_movie.movie_name,
                   tbl_movie.desc,
                   tbl_movie.image
-                FROM assign_show
-                JOIN tbl_movie ON assign_show.movie_id = tbl_movie.movie_id
-                ORDER BY assign_show.show_id DESC
+                FROM tbl_assign_show
+                JOIN tbl_movie ON tbl_assign_show.movie_id = tbl_movie.movie_id
+                ORDER BY tbl_assign_show.show_id DESC
               ";
               $result = mysqli_query($con, $sql);
 

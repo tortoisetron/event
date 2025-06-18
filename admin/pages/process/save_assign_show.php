@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check for time conflict
     $conflictSql = "
-        SELECT * FROM assign_show
+        SELECT * FROM tbl_assign_show
         WHERE date = ?
           AND (
               (start_time <= ? AND (end_time IS NULL OR end_time > ?)) OR
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert the show
-    $insertSql = "INSERT INTO assign_show (movie_id, date, start_time, end_time) VALUES (?, ?, ?, ?)";
+    $insertSql = "INSERT INTO tbl_assign_show (movie_id, date, start_time, end_time) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($con, $insertSql);
     mysqli_stmt_bind_param($stmt, "isss", $movie_id, $date, $start_time, $end_time);
 

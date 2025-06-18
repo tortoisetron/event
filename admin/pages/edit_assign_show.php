@@ -10,7 +10,7 @@
     $show_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
     // Fetch existing record
-    $query  = "SELECT * FROM assign_show WHERE show_id = '$show_id'";
+    $query  = "SELECT * FROM tbl_assign_show WHERE show_id = '$show_id'";
     $result = mysqli_query($con, $query);
     if (! $result || mysqli_num_rows($result) === 0) {
         die("Invalid Show ID or data not found.");

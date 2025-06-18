@@ -9,7 +9,7 @@ $rdate      = $_POST['rdate'];
 $start_time = $_POST['start_time'];
 $end_time   = $_POST['end_time'];
 
-$query = "UPDATE assign_show SET 
+$query = "UPDATE tbl_assign_show SET 
             movie_id = '$event_id',
             date = '$rdate',
             start_time = '$start_time',
