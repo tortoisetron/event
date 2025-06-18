@@ -2,10 +2,10 @@
 // define( 'WP_DEBUG', true );
 // define( 'WP_DEBUG_DISPLAY', true );
 @ini_set( 'display_errors', 1 );
-    $host = "localhost";
+    $host = "127.0.0.1";
     $user = "root";                     
     $pass = "";                                  
-    $db = "test123";
+    $db = "event";
     $port = 3306;
     $con = mysqli_connect($host, $user, $pass, $db, $port)or die(mysql_error());
 ?>  
