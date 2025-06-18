@@ -22,9 +22,27 @@ if (!empty($_FILES['image']['name'])) {
 $sql = "UPDATE tbl_movie SET movie_name='$name', `desc`='$desc', release_date='$rdate', image='$flname', video_url='$video' WHERE movie_id='$id'";
 
 if (mysqli_query($con, $sql)) {
-    $_SESSION['success'] = "Event updated successfully!";
+    echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Event updated successfully!',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(function() {
+            window.location.href = 'index.php';
+        });
+    </script>";
 } else {
-    $_SESSION['error'] = "Error updating event: " . mysqli_error($con);
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Error updating event: " . mysqli_error($con) . "',
+            showConfirmButton: true
+        }).then(function() {
+            window.location.href = 'edit_event.php?id=" . $id . "';
+        });
+    </script>";
 }
-header('location:index.php');
-exit; 
+?> 

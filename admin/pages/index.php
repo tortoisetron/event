@@ -11,7 +11,7 @@ include('header.php');
         Events List
       </h1>
       <ol class="breadcrumb">
-        <li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li>
+        <!-- <li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li> -->
         <li class="active">Events List</li>
       </ol>
     </section>
@@ -29,6 +29,10 @@ include('header.php');
             <!-- /.box-header -->
             <div class="box-body">
               <?php include('../../msgbox.php');?>
+              <?php 
+              $sql = "SELECT * FROM tbl_movie ORDER BY movie_id DESC";
+              $result = mysqli_query($con, $sql);
+              if(mysqli_num_rows($result) > 0) { ?>
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -41,8 +45,6 @@ include('header.php');
                 </thead>
                 <tbody>
                   <?php
-                  $sql = "SELECT * FROM tbl_movie ORDER BY movie_id DESC";
-                  $result = mysqli_query($con, $sql);
                   while($row = mysqli_fetch_array($result)) {
                   ?>
                   <tr>
@@ -53,12 +55,24 @@ include('header.php');
                     <td>
                       <a href="edit_event.php?id=<?php echo $row['movie_id']; ?>" class="btn btn-primary btn-sm">Edit</a>
                       <a href="seat-arrangement.php?theater_id=<?php echo $row['movie_id']; ?>&action=edit" class="btn btn-info btn-sm">Manage Seats</a>
-                      <a href="delete_event.php?id=<?php echo $row['movie_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this event?')">Delete</a>
+                      <button onclick="deleteEvent(<?php echo $row['movie_id']; ?>)" class="btn btn-danger btn-sm">
+                        <i class="fa fa-trash"></i> Delete
+                      </button>
                     </td>
                   </tr>
                   <?php } ?>
                 </tbody>
               </table>
+              <?php } else { ?>
+                <div class="text-center" style="padding: 50px 0;">
+                  <i class="fa fa-calendar fa-5x text-muted" style="margin-bottom: 20px;"></i>
+                  <h3 class="text-muted">No Events Found</h3>
+                  <p class="text-muted">There are no events in the system yet.</p>
+                  <a href="add_event.php" class="btn btn-primary btn-lg" style="margin-top: 20px;">
+                    <i class="fa fa-plus"></i> Add Your First Event
+                  </a>
+                </div>
+              <?php } ?>
             </div>
           </div>
         </div> 
@@ -73,11 +87,19 @@ include('header.php');
 include('footer.php');
 ?>
 <script>
-function del(m)
-    {
-        if (confirm("Are you want to delete this movie") == true) 
-        {
-            window.location="process_delete_movie.php?mid="+m;
-        } 
-    }
-    </script>
+function deleteEvent(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.location.href = 'delete_event.php?id=' + id;
+        }
+    });
+}
+</script>

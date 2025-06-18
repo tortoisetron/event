@@ -1,0 +1,7 @@
+# Database configuration
+config.php
+
+# Common PHP files to ignore
+*.log
+vendor/
+.env 
